@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# the mountpoint utility can also be used
+# but sometimes it fails with "Value too large for defined data type"
+for i in `cat /proc/mounts | cut -d' ' -f2`; do
+   if [ "x$1" = "x$i" ]; then
+      echo "$i is already a mount point"
+      exit 0
+   fi
+
+done
+
+echo "$1 is not a mount point"
+exit 1
