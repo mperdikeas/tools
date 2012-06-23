@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $# -ne 1 ]
+    then
+        while read f ; do file $f ; done | awk -F/ '{print $NF}' | awk -F: '{print $NF}' | sort | uniq
+    else
+        FOLDER=$1
+        find $FOLDER -exec file {} \;  | awk -F/ '{print $NF}' | awk -F: '{print $NF}' | sort | uniq
+fi
