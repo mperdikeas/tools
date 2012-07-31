@@ -1,0 +1,50 @@
+#!/usr/bin/perl
+use File::Basename;
+use Digest::MD5;
+
+sub md5 {
+    my $filename = $_[0];
+    open FILE, $filename;
+    binmode(FILE);
+    my $ctx = Digest::MD5->new;
+    $ctx->addfile(*FILE);
+    close FILE;
+    return $ctx->hexdigest;
+}
+
+die "Usage: $0 <dirWithFilesToBeRemoved> <dirWithReferenceFiles>\n"
+    unless @ARGV == 2;
+
+my $DirWithFilesToBeRemoved=$ARGV[0];
+my $DirWithFilesToBeUsedAsReference=$ARGV[1];
+
+my @stat1 = stat($DirWithFilesToBeRemoved);
+my @stat2 = stat($DirWithFilesToBeUsedAsReference);
+
+if ($stat1[0] == $stat2[0]) {
+    die "Use Different dirs!\n"
+	unless $stat1[1] != $stat2[1];
+}
+
+# find same files in DirWithFilesToBeRemoved and DirWithFilesToBeUsedAsReference 
+# and remove them from DirWithFilesToBeRemoved
+open F, "find $DirWithFilesToBeRemoved -type f|" or die "can't run 'find $DirWithFilesToBeRemoved -type f' !";
+while (my $file=<F>) {
+    chomp $file;
+    $newSize = -s $file;
+    $oldName = $file;
+    $oldName =~ s/^$DirWithFilesToBeRemoved/$DirWithFilesToBeUsedAsReference/g;
+    if ( -l "$file" ) {
+	1; #unlink "$file";
+    } elsif ( ! -e "$oldName" ) {
+	1; # printf("%s is a new file!\n", basename $file);
+    } elsif (( -s "$file" ) == ( -s "$oldName" )) {
+	$md1 = md5($file);
+	$md2 = md5($oldName);
+	if ($md1 eq $md2) {
+	    #printf("Files $file and $oldName are the same! Removing $file\n");
+	    printf("Removing $file\n");
+	    unlink "$file";
+	}
+    }
+}
