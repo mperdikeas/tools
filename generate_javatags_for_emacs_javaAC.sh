@@ -62,9 +62,13 @@ CLASSPATH=$RT_JAR:$MUTIL_JAR:$COMMONS_IO_JAR:$COMMONS_LANG_JAR:$JSF_JAR:$JEE_JAR
 echo "classpath is now: $CLASSPATH"
 
 cd $EMACS_JAC_FOLDER
-java -classpath $CLASSPATH Tags
-NUMOFLINES_BACKUP=$(wc -l <"${JAVA_TAGS_FILE_BACKUP}")
+java -classpath $CLASSPATH Tags 2>&1
+
 NUMOFLINES=$(wc -l <"${JAVA_TAGS_FILE}")
-echo "old tags file is now in: $JAVA_TAGS_FILE_BACKUP ($NUMOFLINES_BACKUP lines)"
-echo "new tags file is now in: $JAVA_TAGS_FILE ($NUMOFLINES lines)"
+if [ -f $JAVA_TAGS_FILE_BACKUP ]; then 
+    NUMOFLINES_BACKUP=$(wc -l <"${JAVA_TAGS_FILE_BACKUP}")
+    echo "old tags file is now in: $JAVA_TAGS_FILE_BACKUP ($NUMOFLINES_BACKUP lines)"; else
+    echo "this is the first tags file created (no need to create backup)"
+fi
+echo "current tags file is now in: $JAVA_TAGS_FILE ($NUMOFLINES lines)"
 cd -
