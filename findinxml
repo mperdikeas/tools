@@ -1,7 +1,7 @@
 #!/bin/bash
 if [ $# -ne 2 ]
 then
-    echo "usage is $0 <top-of-folder-hierarchy> <grep pattern to look for in *.xml files>"
+    echo "usage is $0 <top-of-folder-hierarchy> <grep pattern to look for in XML files>"
 else
     FOLDER=$1
     THING_TO_LOOKFOR=$2

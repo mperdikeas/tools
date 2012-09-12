@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ $# -ne 2 ]
+then
+    echo "usage is $0 <top-of-folder-hierarchy> <grep pattern to look for in ASCII files>"
+else
+    FOLDER=$1
+    THING_TO_LOOK_FOR=$2
+    find $FOLDER -type f -exec grep -l $THING_TO_LOOK_FOR {} \; -exec file {} \; | grep text | cut -d ':' -f1
+fi
