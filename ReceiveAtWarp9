@@ -1,0 +1,1 @@
+nc.traditional -l -p 9656 | lzop -d | tar xpvf -
