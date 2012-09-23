@@ -1,0 +1,56 @@
+#!/bin/bash
+
+unset PATH
+ID=/usr/bin/id;
+ECHO=/bin/echo;
+MOUNT=/bin/mount;
+RM=/bin/rm;
+MV=/bin/mv;
+CP=/bin/cp;
+TOUCH=/bin/touch;
+RSYNC=/usr/bin/rsync;
+EXCLUDES=/home/mperdikeas/tools/make_snapshot.sh.excludes
+SNAPSHOT_RW=/media/Elements/snapshot;
+
+echo "step 1 of 5 : deleting the oldest snapshot, if it exists"
+if [ -d $SNAPSHOT_RW/home/manual.3 ] ; then \
+$RM -rf $SNAPSHOT_RW/home/manual.3 ;        \
+fi ;
+
+echo "step 2 of 5 : shifting the middle snapshots"
+if [ -d $SNAPSHOT_RW/home/manual.2 ] ; then                 \
+$MV $SNAPSHOT_RW/home/manual.2 $SNAPSHOT_RW/home/manual.3 ; \
+fi ;
+
+if [ -d $SNAPSHOT_RW/home/manual.2 ] ; then                 \
+$MV $SNAPSHOT_RW/home/manual.1 $SNAPSHOT_RW/home/manual.2 ; \
+fi ;
+
+echo "step 3 of 5 : make a hard-link-only (except for dirs) copy of the latest snapshot, if it exists"
+if [ -d $SNAPSHOT_RW/home/manual.0 ] ; then                     \
+$CP -al $SNAPSHOT_RW/home/manual.0 $SNAPSHOT_RW/home/manual.1 ; \
+fi ;
+
+# step 4 : rsync from the system into the latest snapshot (notice
+# that rsynch behaves like cp --remove-destination by default, so
+# the destination is unlinked first. If is were not so, this would
+# copy over the other snapshot(s) too!
+echo "step 4 of 5 : rsync from the system into the latest snapshot"
+
+
+$RSYNC -va --delete --delete-excluded    \
+       --exclude-from=$EXCLUDES          \
+      /home/ $SNAPSHOT_RW/home/manual.0  ;
+
+# mystery: why is the following not working ? 
+#$RSYNC -va --delete --delete-excluded    \
+#       --exclude-from=$EXCLUDES          \
+#       /home/ $SNAPSHOT_RW/home/manual.0 ;
+
+
+
+echo "step 5 of 5 : touch the mtime of manual.0 to reflect the snapshot time"
+$TOUCH $SNAPSHOT_RW/home/manual.0 ;
+
+# that's all.
+
