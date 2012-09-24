@@ -12,10 +12,10 @@ TOUCH=/bin/touch;
 RSYNC=/usr/bin/rsync;
 EXCLUDES=/home/mperdikeas/tools/make_snapshot.sh.excludes
 SNAPSHOT_RW=/media/Elements/snapshot;
-DATE=/bin/date;
 
-START=$(DATE +%s)
-echo "/--- $(DATE) snapshot start" >> $SNAPSHOT_RW/.home-history
+
+START=$(/bin/date +%s)
+echo "/--- $(/bin/date) snapshot start" >> $SNAPSHOT_RW/.home-history
 
 echo "step 1 of 5 : deleting the oldest snapshot, if it exists"
 if [ -d $SNAPSHOT_RW/home/manual.3 ] ; then \
@@ -57,7 +57,7 @@ $RSYNC -va --delete --delete-excluded    \
 echo "step 5 of 5 : touch the mtime of manual.0 to reflect the snapshot time"
 $TOUCH $SNAPSHOT_RW/home/manual.0 ;
 
-END=$(DATE +%s)
+END=$(/bin/date +%s)
 DIFF=$( ( $END - $START))
 echo "\--- snapshot completed in $DIFF seconds" >> $SNAPSHOT_RW/.home-history
 # that's all.
