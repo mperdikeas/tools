@@ -18,18 +18,19 @@ START=$(/bin/date +%s)
 echo "/--- $(/bin/date) snapshot start" >> $SNAPSHOT_RW/.home-history
 
 echo "step 1 of 5 : deleting the oldest snapshot, if it exists"
-if [ -d $SNAPSHOT_RW/home/manual.3 ] ; then \
-$RM -rf $SNAPSHOT_RW/home/manual.3 ;        \
+if [ -d $SNAPSHOT_RW/home/manual.9 ] ; then \
+$RM -rf $SNAPSHOT_RW/home/manual.9 ;        \
 fi ;
 
 echo "step 2 of 5 : shifting the middle snapshots"
-if [ -d $SNAPSHOT_RW/home/manual.2 ] ; then                 \
-$MV $SNAPSHOT_RW/home/manual.2 $SNAPSHOT_RW/home/manual.3 ; \
-fi ;
-
-if [ -d $SNAPSHOT_RW/home/manual.1 ] ; then                 \
-$MV $SNAPSHOT_RW/home/manual.1 $SNAPSHOT_RW/home/manual.2 ; \
-fi ;
+if [ -d $SNAPSHOT_RW/home/manual.8 ] ; then $MV $SNAPSHOT_RW/home/manual.8 $SNAPSHOT_RW/home/manual.9 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.7 ] ; then $MV $SNAPSHOT_RW/home/manual.7 $SNAPSHOT_RW/home/manual.8 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.6 ] ; then $MV $SNAPSHOT_RW/home/manual.6 $SNAPSHOT_RW/home/manual.7 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.5 ] ; then $MV $SNAPSHOT_RW/home/manual.5 $SNAPSHOT_RW/home/manual.6 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.4 ] ; then $MV $SNAPSHOT_RW/home/manual.4 $SNAPSHOT_RW/home/manual.5 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.3 ] ; then $MV $SNAPSHOT_RW/home/manual.3 $SNAPSHOT_RW/home/manual.4 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.2 ] ; then $MV $SNAPSHOT_RW/home/manual.2 $SNAPSHOT_RW/home/manual.3 ; fi ;
+if [ -d $SNAPSHOT_RW/home/manual.1 ] ; then $MV $SNAPSHOT_RW/home/manual.1 $SNAPSHOT_RW/home/manual.2 ; fi ;
 
 echo "step 3 of 5 : make a hard-link-only (except for dirs) copy of the latest snapshot, if it exists"
 if [ -d $SNAPSHOT_RW/home/manual.0 ] ; then                     \
