@@ -1,0 +1,1 @@
+ctags-exuberant -e -R --language-force=java .
