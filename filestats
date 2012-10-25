@@ -1,0 +1,55 @@
+#!/usr/bin/python
+import os
+import sys
+import operator
+
+if len(sys.argv)>3:
+    print "usage is: filestats [directory]"
+    exit(1)
+
+fileList = []
+fileSize = 0
+folderCount = 0
+if len(sys.argv)==1:
+    rootdir=os.getcwd()
+else:
+    rootdir = sys.argv[1]
+
+fileExtensionStats = dict()
+
+
+def addFileExtension(ext):
+    if ext in fileExtensionStats:
+        fileExtensionStats[ext]=fileExtensionStats[ext]+1
+    else:
+        fileExtensionStats[ext]=1
+
+def printFileExtensionStats():
+    for key in sorted(fileExtensionStats, key=fileExtensionStats.get, reverse=True):
+        print ('%15s'%key),'    : ','%10d'%fileExtensionStats[key]
+
+def stringifyNull(v):
+    if v=="":
+        return 'NULL'
+    else:
+        return v
+
+nonFiles = 0
+for root, subFolders, files in os.walk(rootdir):
+    folderCount += len(subFolders)
+    for file in files:
+        f = os.path.join(root,file)
+        if os.path.isfile(f):
+            _,extension = os.path.splitext(os.path.basename(f))
+            addFileExtension(stringifyNull(extension))
+        else:
+            nonFiles=nonFiles+1
+#        fileSize += os.path.getsize(f)
+ #      fileList.append(f)
+
+#print "Total Size in bytes : ", '%10d'%fileSize
+#print "Total Files         : ", '%10d'%(len(fileList))
+#print "Total Folders       : ", '%10d'%folderCount
+#print "==         Ext Breakdown       =="
+printFileExtensionStats()
+print "==  non-files in the breakdown: ",nonFiles
