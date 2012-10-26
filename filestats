@@ -52,4 +52,4 @@ for root, subFolders, files in os.walk(rootdir):
 #print "Total Folders       : ", '%10d'%folderCount
 #print "==         Ext Breakdown       =="
 printFileExtensionStats()
-print "==  non-files in the breakdown: ",nonFiles
+print "==  non-files (e.g. broken links) in the breakdown: ",nonFiles
