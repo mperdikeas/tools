@@ -1,0 +1,4 @@
+#!/bin/bash
+echo "despite the seemingly draconian measure taken, it doesn't seem to work."
+rm -fr ~/.Skype
+
