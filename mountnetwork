@@ -1,3 +1,4 @@
 sudo mount -t smbfs -o username=SEMANTIX\\mperdikeas,password=mperdikeas,dir_mode=0777,file_mode=0777,uid=mperdikeas,gid=mperdikeas //192.168.0.2/prj /media/athina-prj
 sudo mount -t smbfs -o username=SEMANTIX\\mperdikeas,password=mperdikeas,dir_mode=0777,file_mode=0777,uid=mperdikeas,gid=mperdikeas //192.168.0.2/usr /media/athina-usr
 sudo mount -t cifs -o username=m_perdikeas //172.31.128.250/Download /media/np-downloads
+sudo mount -t cifs -o username=m_perdikeas //172.31.128.28/Tmimata /media/odyssey-tmimata
