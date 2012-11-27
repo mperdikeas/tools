@@ -2,11 +2,10 @@
 if [ $# -ne 2 ]
 then
     echo "usage is $0 <top-of-folder-hierarchy> <grep pattern to look for in 'jar tvf' output>"
-    echo "(btw, and unrelated to your usage, this version will stop working the year 2020)" # replace 201 with 202 for the next decade
 else
 
     FOLDER=$1
     THING_TO_LOOKFOR=$2
-    find $FOLDER -iname \*.jar | while read f ; do echo $f && (jar tvf $f | grep -i $THING_TO_LOOKFOR) ; done | grep -B1 201 
+    find $FOLDER -iname \*.jar | while read f ; do echo $f && (jar tvf $f | grep -i $THING_TO_LOOKFOR) ; done | grep -B1 20 
 fi
 
