@@ -1,0 +1,3 @@
+sudo -i
+cd /home/mperdikeas/virtual-machines/vm
+vmplayer Windows\ XP\ Professional.vmx
