@@ -1,0 +1,12 @@
+#!/bin/bash
+if [ $# -ne 4 ]
+then
+    echo "usage is $0 <db-host> <db-port> <username> <database>"
+else
+    HOST=$1
+    PORT=$2
+    USERNAME=$3
+    DATABASE=$4
+    psql -h $HOST -p $PORT -U $USERNAME $DATABASE
+fi
+

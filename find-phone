@@ -1,2 +1,3 @@
 #!/bin/bash
-grep $1 ~/Desktop/phones.csv
+grep -i $1 ~/Desktop/phones.csv
+grep -i $1 ~/mperdikeas.github.com/phonebook.html
