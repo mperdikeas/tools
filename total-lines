@@ -1,0 +1,10 @@
+#!/bin/bash
+if [ $# -ne 2 ]
+    then
+        echo "usage is $0 <dir-to-look-into> <pattern-to-look-for>"
+        exit 1
+    else
+        DIR=$1
+        PATTERN=$2
+        find $DIR -name $PATTERN -print0 | wc -l --files0-from=-
+fi
