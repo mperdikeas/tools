@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ $# -ne 3 ]
+then
+    echo "usage is $0 <clear text pwd> <salt> <num of iterations>"
+else
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+    java -classpath $DIR/pwdcheck-jars/shiro-all-1.2.1.jar:$DIR/pwdcheck-jars/foo.jar PwdCheck  $1 $2 $3
+fi
