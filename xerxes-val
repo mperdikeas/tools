@@ -1,0 +1,2 @@
+#!/bin/bash
+java -classpath /home/mperdikeas/software-deployed/xerces-j/xerces-2_9_0/resolver.jar:/home/mperdikeas/software-deployed/xerces-j/xerces-2_9_0/serializer.jar:/home/mperdikeas/software-deployed/xerces-j/xerces-2_9_0/xercesImpl.jar:/home/mperdikeas/software-deployed/xerces-j/xerces-2_9_0/xercesSamples.jar:/home/mperdikeas/software-deployed/xerces-j/xerces-2_9_0/xml-apis.jar dom.Writer -V -S -F $1
