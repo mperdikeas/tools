@@ -1,0 +1,2 @@
+#!/bin/bash
+java -classpath $(echo ~/esavo-reg/ivoa-console-utils/vols/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg/ivoa-console-utils/vols/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg/ivoa-lib/01/dist/oai-pmh-harvester.jar):$(echo ~/esavo-reg/ivoa-console-utils/vols/dist/foo.jar) _int.esa.esavo.util.VOLS $@
