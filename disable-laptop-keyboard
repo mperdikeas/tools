@@ -1,0 +1,3 @@
+xinput set-int-prop 13 "Device Enabled" 8 0
+xinput set-int-prop 14 "Device Enabled" 8 0
+xinput set-int-prop 16 "Device Enabled" 8 0
