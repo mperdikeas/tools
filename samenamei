@@ -5,5 +5,4 @@ then
 else
     DIR=$1
 fi
-echo "filenames count in $DIR are:"
 for f in $(find $DIR -type f) ; do basename $f ; done  |  tr '[A-Z]' '[a-z]' | sort | uniq -c
