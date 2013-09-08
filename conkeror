@@ -1,0 +1,2 @@
+#!/bin/bash
+exec xulrunner ~/software-downloads/conkeror/application.ini "$@"
