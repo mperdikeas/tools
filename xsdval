@@ -1,0 +1,2 @@
+#!/bin/bash
+java -classpath $(echo ~/esavo-reg-II/common/dist/esavo-common.jar):$(echo ~/esavo-reg-II/ivoa-lib/01/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/xsdval/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/xsdval/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/xsdval/dist/xsd-val.jar) _int.esa.esavo.consoleutils.XSDVAL $@
