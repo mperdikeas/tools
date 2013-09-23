@@ -20,7 +20,12 @@ a single timeline).
 Example of using both of these tools is found here:
     ~/playground/jax-ws/05-hello-top-down-with-client-proxy-b/
 
-In what follows I record the provenance of the tools.
+The following two files:
+    * 'Using netcat to view TCP_IP traffic.pdf'
+    * 'netcat-proxy.png'
+ .. apply to both tools and were obtained from a third site unrelated to either of the two tools.
+
+In what follows I record the provenance of the too tools.
 
 
 1. PROVENANCE FOR tcp-proxy
