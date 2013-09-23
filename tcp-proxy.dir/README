@@ -1,5 +1,35 @@
+0. INTRODUCTION
+
+This folder contains the sources of two scripts:
+
+* tcp-proxy
+* tcp-proxy-log
+
+Despite the similarity in name and structure they actually have different proverances
+(as described below). They are both used to implement a simple intercepting proxy using the 
+`nc` program, `tee` and bash pipes.
+
+It can be used with any arbitrary client and server PROVIDED the client can be configured
+to be used with a proxy.
+
+However the first one justs spits everything in more
+or less linear time order on standard out whereas the second separates incoming and
+outgoing messages in different log files (where it may be harder however to reconstruct
+a single timeline).
+
+Example of using both of these tools is found here:
+    ~/playground/jax-ws/05-hello-top-down-with-client-proxy-b/
+
+In what follows I record the provenance of the tools.
+
+
+1. PROVENANCE FOR tcp-proxy
+
 source:
     http://notes.tweakblogs.net/blog/7955/using-netcat-to-build-a-simple-tcp-proxy-in-linux.html
+
+PDF safe:
+    Using netcat to build a simple TCP proxy in Linux.pdf
 
     Original script (verbatim):
 ---%<---------------------------------
@@ -22,7 +52,10 @@ sed 's/^/<=  /' <"$RCVD" &
 nc -l -p "$1" <"$BACK" | tee "$SENT" | nc "$2" "$3" | tee "$RCVD" >"$BACK"
 --------------------------------->%---
 
-    (see comments inside script for changes made)
+2. PROVENANCE FOR tcp-proxy-log
 
-an example of using this tool is in:
-    ~/playground/jax-ws/05-hello-top-down-with-client-proxy-b/
+source:
+    http://blog.hawkhost.com/2009/12/12/using-netcat-as-an-intercepting-proxy/
+
+PDF safe:
+    Using netcat as an intercepting proxy.pdf

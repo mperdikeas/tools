@@ -1,0 +1,19 @@
+# code inspired from:
+#     http://blog.hawkhost.com/2009/12/12/using-netcat-as-an-intercepting-proxy/
+# and packaged as a script according to patterns I copied from the tcp-proxy utility
+
+#!/bin/sh -e
+
+NC=nc.traditional
+
+if [ $# != 3 ]
+then
+    echo "usage: $0 <src-port> <dst-host> <dst-port>"
+    exit 0
+fi
+
+TMP=`mktemp -d`
+PIPE=$TMP/pipe
+trap 'rm -rf "$TMP"' EXIT
+mkfifo -m 0600 "$PIPE"
+$NC -l -p "$1" < $PIPE | tee incoming.log | $NC "$2" "$3" | tee $PIPE outgoing.log
