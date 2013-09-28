@@ -1,0 +1,15 @@
+#!/bin/bash
+if [ $# -lt 2 ] || [ $# -gt 3 ]
+then
+    echo "usage is $0 <file> <url> [<output>]"
+else
+    FILE=$1
+    URL=$2
+    if [ $# -eq 3 ]
+    then
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $3
+    else
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL 
+    fi
+fi
+
