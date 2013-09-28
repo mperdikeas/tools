@@ -1,15 +1,40 @@
 #!/bin/bash
-if [ $# -lt 2 ] || [ $# -gt 3 ]
+if [ $# -lt 3 ]
 then
-    echo "usage is $0 <file> <url> [<output>]"
+    echo "usage is $0 <file> <url> <output> [<header=value>*]"
 else
     FILE=$1
     URL=$2
+    OUT=$3
     if [ $# -eq 3 ]
     then
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $3
-    else
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL 
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT
+        exit 0
+    fi
+    if [ $# -eq 4 ]
+    then
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4
+        exit 0
+    fi
+    if [ $# -eq 5 ]
+    then
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5
+        exit 0
+    fi
+    if [ $# -eq 6 ]
+    then
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5 -hdr $6
+        exit 0
+    fi
+    if [ $# -eq 7 ]
+    then
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5 -hdr $6 -hdr $7
+        exit 0
+    fi
+    if [ $# -eq 8 ]
+    then
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5 -hdr $6 -hdr $7 -hdr $8
+        exit 0
     fi
 fi
 
