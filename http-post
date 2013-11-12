@@ -13,27 +13,27 @@ else
     fi
     if [ $# -eq 4 ]
     then
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr "$4"
         exit 0
     fi
     if [ $# -eq 5 ]
     then
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr "$4" -hdr "$5"
         exit 0
     fi
     if [ $# -eq 6 ]
     then
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5 -hdr $6
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr "$4" -hdr "$5" -hdr "$6"
         exit 0
     fi
     if [ $# -eq 7 ]
     then
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5 -hdr $6 -hdr $7
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr "$4" -hdr "$5" -hdr "$6" -hdr "$7"
         exit 0
     fi
     if [ $# -eq 8 ]
     then
-        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr $4 -hdr $5 -hdr $6 -hdr $7 -hdr $8
+        java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-compile/mutil.jar):$(echo ~/esavo-reg-II/common/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/post/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.post.POST -f $FILE -url $URL -o $OUT -hdr "$4" -hdr "$5" -hdr "$6" -hdr "$7" -hdr "$8"
         exit 0
     fi
 fi
