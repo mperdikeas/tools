@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+if [ $# -ne 2 ]
+then
+    echo "usage is $0 <class A> <class B>"
+else
+    diff <(javap -s "$1" | sort | grep -v ^$) <(javap -s "$2" | sort | grep -v ^$)
+fi
