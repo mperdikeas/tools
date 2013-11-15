@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 if [ $# -ne 2 ]
 then
     echo "usage is $0 <top-of-folder-hierarchy> <grep pattern to look for in 'jar tvf' output>"

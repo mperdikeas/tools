@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# http://superuser.com/a/125408/138891
+# you may also use the vbindiff tool (sudo apt-get install vbindiff)
+# or the dhex program
+if [ $# -ne 2 ]
+then
+    echo "usage is $0 <binary file A> <binary file B>"
+else
+    FILE_A=$1
+    FILE_B=$2
+    cmp -l "${FILE_A}" "${FILE_B}" | gawk '{printf "%08X %02X %02Xn", $1, strtonum(0$2), strtonum(0$3)}'
+    echo
+fi
