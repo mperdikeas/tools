@@ -5,6 +5,6 @@ then
 else
     FOLDER=$1
     THING_TO_LOOKFOR=$2
-    find $FOLDER -iname \*.xml -exec grep -i $THING_TO_LOOKFOR /dev/null {} \;
+    find "$FOLDER" -iname \*.xml -exec grep -i "$THING_TO_LOOKFOR" /dev/null {} \;
 fi
 

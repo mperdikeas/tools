@@ -5,5 +5,5 @@ then
 else
     FOLDER=$1
     THING_TO_LOOK_FOR=$2
-    find $FOLDER -type f -exec grep -l $THING_TO_LOOK_FOR {} \; -exec file {} \; | grep text | cut -d ':' -f1
+    find "$FOLDER" -type f -exec grep -l "$THING_TO_LOOK_FOR" {} \; -exec file {} \; | grep text | cut -d ':' -f1
 fi
