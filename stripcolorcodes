@@ -1,0 +1,10 @@
+#! /usr/bin/perl
+# http://unix.stackexchange.com/a/4529/24044
+
+use strict;
+use warnings;
+
+while (<>) {
+  s/\e\[?.*?[\@-~]//g; # Strip ANSI escape codes
+  print;
+}
