@@ -4,7 +4,7 @@ then
     echo "usage is $0 <file>"
 else
     FILE=$1
-    CLASSPATH="$(echo /home/mperdikeas/esavo-reg-II/xml-lib/lib-ivy/*.jar | tr ' ' ':'):/home/mperdikeas/esavo-reg-II/common/dist/esavo-common.jar:$(echo /home/mperdikeas/esavo-reg-II/harvester-lib/02/lib/lib-ivy/*.jar | tr ' ' ':'):$(echo /home/mperdikeas/esavo-reg-II/harvester-lib/02/lib/lib-compile/*.jar | tr ' ' ':'):/home/mperdikeas/esavo-reg-II/harvester-lib/02/lib/dist/oai-pmh-harvester.jar:$(echo /home/mperdikeas/esavo-reg-II/common/lib-ivy/*.jar | tr ' ' ':')"
+    CLASSPATH="$(echo /home/mperdikeas/esavo-reg-II/xml-lib/lib-ivy/*.jar | tr ' ' ':'):$(echo /home/mperdikeas/esavo-reg-II/xml-lib/dist/*.jar):/home/mperdikeas/esavo-reg-II/common/dist/esavo-common.jar:$(echo /home/mperdikeas/esavo-reg-II/harvester-lib/02/lib/lib-ivy/*.jar | tr ' ' ':'):$(echo /home/mperdikeas/esavo-reg-II/harvester-lib/02/lib/lib-compile/*.jar | tr ' ' ':'):/home/mperdikeas/esavo-reg-II/harvester-lib/02/lib/dist/oai-pmh-harvester.jar:$(echo /home/mperdikeas/esavo-reg-II/common/lib-ivy/*.jar | tr ' ' ':')"
     echo $CLASSPATH
     java -cp $CLASSPATH esavo.oai.pmh.ListRecordsParser "$FILE"
 
