@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ $# -ne 1 ]
+then
+    echo "usage is $0 <number-of-latest-to-retain>"
+else
+    NUM=$1
+    while read line; do
+      find "$line" -printf '%T@ %p\n'
+    done | sort -k 1nr | sed 's/^[^ ]* //' | head -n "$NUM"
+fi
