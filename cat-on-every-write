@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# requires: sudo apt-get install inotify-tools
+# see: http://unix.stackexchange.com/a/102340/24044
+if [ $# -lt 1 ]
+then
+    echo "usage is $0 <file to trace>"
+else
+    FILE=$1
+    while inotifywait -qq -e close_write "$FILE" >/dev/null; do
+        cat "$FILE"
+        echo
+    done
+fi
