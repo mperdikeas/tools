@@ -5,8 +5,9 @@ then
 else
     N=$1
     SCRIPT=$2
-    # for i in {1.."$N"} # http://unix.stackexchange.com/q/103121/24044
-    for i in $(seq 1 1 $N)
+    # for i in {1.."$N"} 
+    # for i in $(seq 1 1 $N) # http://unix.stackexchange.com/q/103121/24044
+    for ((i = 1 ; i <= $N ; i++ ))
     do
         "$SCRIPT" > $i.out 2> $i.err &
     done
