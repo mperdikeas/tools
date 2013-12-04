@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+if grep ^flags /proc/cpuinfo > /dev/null 2>&1 | uniq | grep lm
+then
+    cpu="32bit"
+else
+    cpu="64bit"
+fi
+
+if grep uname x86_64 -a > /dev/null 2>&1
+then
+    os="64bit"
+else
+    os="32bit"
+fi
+
+echo "CPU is: $cpu"
+echo "OS  is: $os"
