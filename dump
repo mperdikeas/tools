@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+java -classpath $(echo ~/esavo-reg-II/common/dist/esavo-common.jar):$(echo ~/esavo-reg-II/ivoa-console-utils/dump/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/dump/lib-compile/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/dump/dist/dump.jar) _int.esa.esavo.consoleutils.Dump $@
