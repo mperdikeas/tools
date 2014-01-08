@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#http://stackoverflow.com/a/424142/274677
+if [ $# -ne 1 ]
+then
+    echo "usage is $0 <revision id>"
+else
+    REV="$1"
+    git diff-tree --no-commit-id --name-only -r "$REV"
+fi
