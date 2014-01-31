@@ -1,2 +1,2 @@
 #!/bin/bash
-java -classpath $(echo ~/esavo-reg-II/ivoa-lib/01/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/vols/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/vols/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/vols/dist/foo.jar) _int.esa.esavo.consoleutils.VOLS $@
+java -classpath $(echo ~/esavo-reg-II/ivoa-lib/01/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/vols/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/vols/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/vols/dist/vols.jar) _int.esa.esavo.consoleutils.vols.VOLS $@
