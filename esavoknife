@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+java -classpath $(echo ~)/esavo-reg-II/repo-wide-libs/mutil.jar:$(echo ~/esavo-reg-II/ivoa-console-utils/esavo-swiss-knife/lib-ivy/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/common/dist/esavo-common.jar:$(echo ~)/esavo-reg-II/ivoa-console-utils/esavo-swiss-knife/dist/esavo-swiss-knife.jar:$(echo ~/esavo-reg-II/ivoa-console-utils/esavo-swiss-knife/lib-runtime/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/ivoa-lib/01/dist/ivoalib.jar:$(echo ~)/esavo-reg-II/xml-lib/dist/xmlutil.jar _int.esa.esavo.consoleutils.esaknife.EsavoSwissKnife $@
+
+
+
+
