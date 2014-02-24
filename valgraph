@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-java -classpath $(echo ~)/esavo-reg-II/curation/lib/dist/esavo-validator.jar:~/esavo-reg-II/repo-wide-libs/mutil.jar:$(echo ~/esavo-reg-II/ivoa-console-utils/valgraph/lib-ivy/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/common/dist/esavo-common.jar:$(echo ~)/esavo-reg-II/ivoa-console-utils/valgraph/dist/valgraph.jar:$(echo ~/esavo-reg-II/ivoa-console-utils/valgraph/lib-runtime/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/db-business-api/dist/esavo-dbbusiness.jar:$(echo ~)/esavo-reg-II/jfreechart-wrapper/dist/jfreechart-wrapper.jar _int.esa.esavo.consoleutils.valgraph.VALGRAPH $@
+java -classpath $(echo ~)/esavo-reg-II/curation/lib/dist/esavo-validator.jar:~/esavo-reg-II/repo-wide-libs/mutil.jar:$(echo ~/esavo-reg-II/ivoa-console-utils/valgraph/lib-ivy/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/common/dist/esavo-common.jar:$(echo ~)/esavo-reg-II/ivoa-console-utils/valgraph/dist/valgraph.jar:$(echo ~/esavo-reg-II/ivoa-console-utils/valgraph/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/common/lib-ivy/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/db-business-api/dist/esavo-dbbusiness.jar:$(echo ~)/esavo-reg-II/jfreechart-wrapper/dist/jfreechart-wrapper.jar _int.esa.esavo.consoleutils.valgraph.VALGRAPH $@
 
 
 
