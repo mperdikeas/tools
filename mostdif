@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+if [ $# -eq 0 ]; then
+        echo "usage is $0 [v] <files to compare>"
+else
+    verbose="$1"
+    verboseFlag=false
+    if [ "$verbose" ==  "v" ]; then
+        verboseFlag=true;
+        shift 
+    fi
+    if [ $# -eq 0 ]; then
+            echo "usage is $0 [v] <files to compare>"
+    else
+        mostdifs=-1;
+        difs=mostdifs
+        FILES=$@
+        for f1 in $FILES; do 
+            for f2 in $FILES; do 
+                difs=$(diff "$f1" "$f2" | wc -l); 
+                [ "$difs" -gt "$mostdifs" ] && mostdifs=$difs && mostdifs_files="$f1 : $f2";
+                if [ "$verboseFlag" = true ] ; then
+                    echo "f1 is $f1, f2 is $f2, difs is $difs, mostdifs is $mostdifs, mostdifs_files is $mostdifs_files"
+                fi
+            done 
+        done 
+        if [ "$mostdifs" -gt 0 ]; then
+            echo "$mostdifs_files ($mostdifs)"
+        fi
+    fi
+fi

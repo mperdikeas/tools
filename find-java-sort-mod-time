@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+find -type f -iname \*.java -print0 | xargs -r0 stat -c %y\ %n | sort
