@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/oaipmh-dump/lib-compile/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/oaipmh-dump/lib-ivy/*.jar | tr ' ' ':'):$(echo ~)/esavo-reg-II/common/dist/esavo-common.jar:$(echo ~)/esavo-reg-II/ivoa-console-utils/oaipmh-dump/dist/voshell.jar _int.esa.esavo.consoleutils.oaipmhdump.OAIPMHDump $@
