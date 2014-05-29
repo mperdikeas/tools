@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+java -classpath $(echo ~/esavo-reg-II/ivoa-console-utils/registry-anomalies-report/lib-compile/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/registry-anomalies-report/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/registry-anomalies-report/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/registry-util/lib/dist/*.jar):$(echo ~/esavo-reg-II/ivoa-lib/dist/*.jar):$(echo ~/esavo-reg-II/db-business-api/dist/*.jar):$(echo ~/esavo-reg-II/ivoa-console-utils/registry-anomalies-report/dist/*.jar)  _int.esa.esavo.consoleutils.registryanomalies.RegistryAnomaliesReport $@
+
