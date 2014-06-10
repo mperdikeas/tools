@@ -1,3 +1,4 @@
 #!/bin/bash
-vimdiff "$6" "$7"
+#vimdiff "$6" "$7"
+meld "$6" "$7"
 exit 0
