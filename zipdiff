@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 DIR=$(echo ~/zip-diff/zip-diff-tool/)
 java -classpath \
-:$(echo $DIR/dist/*.jar | tr ' ' ':')\
+ $(echo $DIR/dist/*.jar | tr ' ' ':')\
 :$(echo $DIR/lib-ivy/*.jar | tr ' ' ':')\
  me.marcus.junius.brutus.zipdiff.ZipDiff $@
