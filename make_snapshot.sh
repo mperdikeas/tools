@@ -13,6 +13,7 @@ RSYNC=/usr/bin/rsync;
 EXCLUDES=/home/mperdikeas/tools/make_snapshot.sh.excludes
 SNAPSHOT_RW=/media/Elements/snapshot;
 EXPR=/usr/bin/expr
+MKDIR=/bin/mkdir
 
 START=$(/bin/date +%s)
 echo "/--- $(/bin/date) snapshot start" >> $SNAPSHOT_RW/.home-history
@@ -43,6 +44,10 @@ fi ;
 # copy over the other snapshot(s) too!
 echo "step 4 of 5 : rsync from the system into the latest snapshot"
 
+if [ ! -d "$SNAPSHOT_RW/home/manual.0" ]; then
+    echo "directory $SNAPSHOT_RW/home/manual.0 does not exist - creating it."
+    $MKDIR -p "$SNAPSHOT_RW/home/manual.0" || exit 1
+fi
 
 $RSYNC -va --delete --delete-excluded    \
        --exclude-from=$EXCLUDES          \
