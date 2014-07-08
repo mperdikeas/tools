@@ -65,6 +65,7 @@ $TOUCH $SNAPSHOT_RW/home/manual.0 ;
 
 END=$(/bin/date +%s)
 DIFF=$($EXPR $END - $START)
-echo "\--- snapshot completed in $DIFF seconds" >> $SNAPSHOT_RW/.home-history
+echo "\--- snapshot completed in $DIFF seconds." >> $SNAPSHOT_RW/.home-history
+echo "snapshot completed in $DIFF seconds."
 # that's all.
 
