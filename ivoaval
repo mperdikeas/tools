@@ -1,5 +1,11 @@
-#!/bin/bash
-java -classpath $(echo ~/esavo-reg-II/common/dist/esavo-common.jar):$(echo ~/esavo-reg-II/ivoa-lib/dist/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/ivoaval/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/ivoa-console-utils/ivoaval/dist/*.jar | tr ' ' ':') _int.esa.esavo.consoleutils.ivoaval.IVOAVAL $@
+#!/usr/bin/env bash
+java -classpath \
+ $(echo ~/esavo-reg-II/common/dist/esavo-common.jar)\
+:$(echo ~/esavo-reg-II/xml-validation/lib/dist/*.jar | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-lib/dist/*.jar | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/ivoaval/lib-ivy/*.jar | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/ivoaval/dist/*.jar | tr ' ' ':')\
+ _int.esa.esavo.consoleutils.ivoaval.IVOAVAL $@
 
 
 
