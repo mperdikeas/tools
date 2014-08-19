@@ -1,2 +1,12 @@
 #!/usr/bin/env bash
-java -classpath $(echo ~/esavo-reg-II/curation/lib/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/repo-wide-libs/mutil.jar):$(echo ~/esavo-reg-II/curation/lib/dist/esavo-validator.jar):$(echo ~/esavo-reg-II/ivoa-console-utils/sval/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/common/dist/esavo-common.jar):$(echo ~/esavo-reg-II/ivoa-console-utils/sval/dist/sval.jar):$(echo ~/esavo-reg-II/ivoa-console-utils/sval/lib-runtime/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/harvester-lib/02/lib/lib-ivy/*.jar | tr ' ' ':'):$(echo ~/esavo-reg-II/harvester-lib/02/lib/dist/oai-pmh-harvester.jar) _int.esa.esavo.consoleutils.sval.SVAL $@
+java -classpath \
+ $(echo ~/esavo-reg-II/curation/lib/lib-ivy/*.jar                | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/common/dist/*.jar                         | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/curation/lib/dist/*.jar                   | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/xml-validation/lib/dist/*.jar             | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/sval/lib-ivy/*.jar     | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/sval/dist/*.jar        | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/sval/lib-runtime/*.jar | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/harvester-lib/lib/lib-ivy/*.jar           | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/harvester-lib/lib/dist/*.jar              | tr ' ' ':')\
+ _int.esa.esavo.consoleutils.sval.SVAL $@
