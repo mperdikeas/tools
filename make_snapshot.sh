@@ -49,7 +49,7 @@ if [ ! -d "$SNAPSHOT_RW/home/manual.0" ]; then
     $MKDIR -p "$SNAPSHOT_RW/home/manual.0" || exit 1
 fi
 
-$RSYNC -va --delete --delete-excluded    \
+$RSYNC -vva --delete --delete-excluded    \
        --exclude-from=$EXCLUDES          \
       /home/ $SNAPSHOT_RW/home/manual.0  ;
 
