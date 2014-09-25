@@ -11,6 +11,7 @@ java -classpath \
 :$(echo ~)/esavo-reg-II/jfreechart-wrapper/dist/jfreechart-wrapper.jar\
 :$(echo ~/esavo-reg-II/ivoa-lib/dist/*.jar | tr ' ' ':')\
 :$(echo ~/esavo-reg-II/harvester-lib/lib/dist/*.jar | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/xml-validation/lib/dist/*.jar | tr ' ' ':')\
   _int.esa.esavo.consoleutils.valgraph.VALGRAPH $@
 
 
