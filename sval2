@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+java -classpath \
+ $(echo ~/esavo-reg-II/curation/lib2/lib-ivy/*.jar               | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/common/dist/*.jar                         | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/curation/lib2/dist/*.jar                  | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/xml-validation/lib/dist/*.jar             | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/sval2/lib-ivy/*.jar    | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/sval2/dist/*.jar       | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/sval2/lib-runtime/*.jar| tr ' ' ':')\
+:$(echo ~/esavo-reg-II/harvester-lib/lib/lib-ivy/*.jar           | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/harvester-lib/lib/dist/*.jar              | tr ' ' ':')\
+ _int.esa.esavo.consoleutils.sval.SVAL $@
