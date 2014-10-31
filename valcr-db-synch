@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-java -classpath \
- $(echo ~/esavo-reg-II/common/dist/*.jar                                                | tr ' ' ':')\
-:$(echo ~/esavo-reg-II/curation/lib/dist/*.jar                                          | tr ' ' ':')\
-:$(echo ~/esavo-reg-II/db-business-api/dist/*.jar                                       | tr ' ' ':')\
-:$(echo ~/esavo-reg-II/ivoa-console-utils/validation-criteria-db-synch/lib-ivy/*.jar    | tr ' ' ':')\
-:$(echo ~/esavo-reg-II/ivoa-console-utils/validation-criteria-db-synch/dist/*.jar       | tr ' ' ':')\
-:$(echo ~/esavo-reg-II/ivoa-console-utils/validation-criteria-db-synch/lib-runtime/*.jar| tr ' ' ':')\
- _int.esa.esavo.consoleutils.validation_criteria_db_synch.ValidationCriteriaDBSynch $@

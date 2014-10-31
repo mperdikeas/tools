@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+java -classpath \
+ $(echo ~/esavo-reg-II/common/dist/*.jar                            | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/curation/lib/dist/*.jar                      | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/db-business-api/dist/*.jar                   | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/valcritm/lib-ivy/*.jar    | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/valcritm/dist/*.jar       | tr ' ' ':')\
+:$(echo ~/esavo-reg-II/ivoa-console-utils/valcritm/lib-runtime/*.jar| tr ' ' ':')\
+ _int.esa.esavo.consoleutils.valcritm.ValidationCriteriaMaintenance $@
