@@ -53,11 +53,11 @@ $RSYNC -vva --delete --delete-excluded    \
        --exclude-from=$EXCLUDES          \
       /home/ $SNAPSHOT_RW/home/manual.0  ;
 
-# mystery: why is the following not working ? 
-#$RSYNC -va --delete --delete-excluded    \
-#       --exclude-from=$EXCLUDES          \
-#       /home/ $SNAPSHOT_RW/home/manual.0 ;
+# mystery: why do we have to do this twice (if only once sometimes certain files in destination are not deleted)
 
+$RSYNC -vva --delete --delete-excluded    \
+       --exclude-from=$EXCLUDES          \
+      /home/ $SNAPSHOT_RW/home/manual.0  ;
 
 
 echo "step 5 of 5 : touch the mtime of manual.0 to reflect the snapshot time"
