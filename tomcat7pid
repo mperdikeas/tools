@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-ps -ef 2>&1 | grep ^tomcat7 | awk '{print $2}'
+ps -ef | grep [t]omcat7 | grep java | awk '{print $2}'
