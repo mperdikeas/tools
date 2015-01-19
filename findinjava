@@ -1,10 +1,11 @@
-#!/bin/bash
-if [ $# -ne 2 ]
+#!/usr/bin/env bash
+if [[ ($# -ne 1) && ($# -ne 2) ]]
 then
-    echo "usage is $0 <top-of-folder-hierarchy> <grep pattern to look for in *.java files>"
+    echo "usage is $0 <grep pattern to look for in *.java files> [<top-of-folder-hierarchy> or, if missing, current dir]"
 else
-    FOLDER=$1
-    THING_TO_LOOKFOR=$2
+    THING_TO_LOOKFOR=$1
+    FOLDER=${2:-.}
+
     find -L "$FOLDER" -iname \*.java -exec grep -i "$THING_TO_LOOKFOR" /dev/null {} \;
 fi
 
