@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+if [[ ($# -ne 0) && ($# -ne 1) ]]
+then
+    echo "usage is $0 [<top-of-folder-hierarchy> or, if missing, current dir]"
+else
+    FOLDER=${1:-.}
+    find "$FOLDER" -type f -exec grep -Il . {} \;
+fi
