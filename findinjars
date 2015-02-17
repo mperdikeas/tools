@@ -7,17 +7,11 @@ then
 else
     REG_EXP=$1
     DIR=${2:-.}
+    if [ ! -d $DIR ]; then
+        echo "directory [$DIR] does not exist";
+        exit 1;
+    fi
     find "$DIR" -name "*.jar" -exec sh -c 'jar -tf {}|grep -H --label {} '$REG_EXP'' \;
 fi
 
-# old implementation (my sloppy solution): http://stackoverflow.com/a/10767671/274677
-#if [ $# -lt 2 ] || [ $# -gt 3 ]
-#then
-#    echo "usage is $0 <top-of-folder-hierarchy> <optional -i flag> <grep pattern to look for in 'jar tvf' output>"
-#else
-#    FOLDER="$1"
-#    #    THING_TO_LOOKFOR="$2"
-#    # find "$FOLDER" -iname \*.jar | while read f ; do echo $f && (jar tvf $f | grep -i "$THING_TO_LOOKFOR") ; done        # I believe the rest is not needed:
-#    find "$FOLDER" -iname \*.jar | while read f ; do echo $f && (jar tvf $f | grep $(echo "${*:2}")) ; done | grep -B1 20  # It is not strictly needed but it does result in less cluttered output
-#fi
 
