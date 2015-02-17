@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+
+#
+# This is my SO answer provided here:
+#
+#    http://stackoverflow.com/a/10531392/274677
+#
 if [[ ($# -ne 1) && ($# -ne 2) ]]
 then
     echo "usage is $0 <grep pattern to look for in 'jar tvf' output> [<top-of-dir-tree> or, if missing, current dir]"
