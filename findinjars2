@@ -12,7 +12,7 @@ else
     THING_TO_LOOKFOR="$1"
     DIR=${2:-.}
     if [ ! -d $DIR ]; then
-        echo "directory [$DIR] exist";
+        echo "directory [$DIR] does not exist";
         exit 1;
     fi
     find "$DIR" -iname \*.jar | while read f ; do (jar tf $f | awk '{print "'"$f"'" "  " $0}' | grep -i "$THING_TO_LOOKFOR") ; done
