@@ -1,0 +1,1 @@
+ssh -D 5222 mperdikeas@umkkac650dd1.mperdikeas.koding.io -N
