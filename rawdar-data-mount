@@ -1,0 +1,2 @@
+sudo mkdir -p /mnt/rawdar
+sudo mount -t cifs -o guest //172.31.128.123/esa /mnt/rawdar/
