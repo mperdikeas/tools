@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# from           : https://github.com/apenwarr/sshuttle/
+# discovered from: http://superuser.com/a/448247
+cd ~/software-downloads/sshuttle/sshuttle && ./sshuttle --dns -vvr mperdikeas@umkkac650dd1.mperdikeas.koding.io 0/0
