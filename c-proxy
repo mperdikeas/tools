@@ -1,0 +1,1 @@
+google-chrome --proxy-server="socks5://localhost:5222" --host-resolver-rules="MAP * 0.0.0.0 , EXCLUDE myproxy"
