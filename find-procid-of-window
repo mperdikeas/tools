@@ -1,0 +1,3 @@
+#https://faq.i3wm.org/question/2665/how-to-deal-with-the-window-that-can-not-be-closed-by-modshiftq.1.html
+#!/usr/bin/env bash
+xwininfo -all  | grep Process\ id
