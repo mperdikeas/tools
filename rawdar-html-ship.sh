@@ -2,6 +2,12 @@
 set -e
 readonly PASS_FILE=~/esac.neuropublic.pwd
 readonly DEST=172.31.148.22
+cd ~/esac-rawdar
+BROKEN="$(find -L -type l | wc -l)"
+if [ "$BROKEN" -gt 0 ]; then
+    echo "broken links exist - refusing to proceed"
+    exit 1
+fi
 dir=`mktemp -d` && cd $dir
 printf "HTML will be exported in temp dir: [%s]\n" $dir
 rm -f rawdar.html && cp ~/esac-rawdar/rawdar.html .
