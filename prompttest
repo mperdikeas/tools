@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+servers=($(find ~/.emacs.d/server -type f -exec basename {} \;))
+s=-1
+NEW_SERVER="new-server"
+selectedServer=""
+NUM_SERVERS=${#servers[@]}
+echo "# of servers is: ${NUM_SERVERS}"
+while ! [[ $s -ge 0 && $s -le $NUM_SERVERS ]]
+do
+    echo "Choose server to connect to:"
+    echo "0 - new server (*)"
+    i=0
+    for server in "${servers[@]}"
+    do
+        :
+        i=$((i+1))
+        echo "$i - $server"
+    done
+    read -n 1 -s s
+    re='^[0-9]+$'
+    if ! [[ $s =~ $re ]] ; then
+        #        echo "error: Not a number" >&2; #exit 1
+        if [[ $s -eq "" ]]; then
+            s=0
+        else
+            s=-1            
+        fi
+    fi
+    if [[ $s -eq 0 ]] ; then
+        selectedServer=$NEW_SERVER
+    else
+        selectedServer=${servers[$((s-1))]}
+    fi
+done
+printf "\n$s was entered corresponding to $selectedServer\n"
+
