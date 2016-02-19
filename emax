@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 servers=($(find ~/.emacs.d/server -type f -exec basename {} \;))
 s=-1
-NEW_SERVER="new-server"
+NEWSERVER="newserver"
 selectedServer=""
 NUM_SERVERS=${#servers[@]}
 echo "# of servers is: ${NUM_SERVERS}"
@@ -27,10 +27,20 @@ do
         fi
     fi
     if [[ $s -eq 0 ]] ; then
-        selectedServer=$NEW_SERVER
+        selectedServer=$NEWSERVER
     else
         selectedServer=${servers[$((s-1))]}
     fi
 done
-printf "\n$s was entered corresponding to $selectedServer\n"
+#printf "\n$s was entered corresponding to $selectedServer\n"
+
+if [ ${selectedServer} = ${NEWSERVER} ] ; then
+    printf "Enter name for new emacs daemon:"
+    read newServerName
+    emacs --daemon="$newServerName"
+    emacsclient -f "$newServerName" -t $@
+else
+    printf "executing case for existing server"
+    emacsclient -f "$selectedServer" -t $@
+fi
 
