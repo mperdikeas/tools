@@ -5,42 +5,55 @@ NEWSERVER="newserver"
 selectedServer=""
 NUM_SERVERS=${#servers[@]}
 echo "# of servers is: ${NUM_SERVERS}"
-while ! [[ $s -ge 0 && $s -le $NUM_SERVERS ]]
-do
-    echo "Choose server to connect to:"
-    echo "0 - new server (*)"
-    i=0
-    for server in "${servers[@]}"
-    do
-        :
-        i=$((i+1))
-        echo "$i - $server"
-    done
-    read -n 1 -s s
-    re='^[0-9]+$'
-    if ! [[ $s =~ $re ]] ; then
-        #        echo "error: Not a number" >&2; #exit 1
-        if [[ $s -eq "" ]]; then
-            s=0
-        else
-            s=-1            
-        fi
-    fi
-    if [[ $s -eq 0 ]] ; then
-        selectedServer=$NEWSERVER
-    else
-        selectedServer=${servers[$((s-1))]}
-    fi
-done
-#printf "\n$s was entered corresponding to $selectedServer\n"
 
-if [ ${selectedServer} = ${NEWSERVER} ] ; then
+
+
+function spawnNewEmacsDaemon {
     printf "Enter name for new emacs daemon:"
     read newServerName
     emacs --daemon="$newServerName"
     emacsclient -f "$newServerName" -t $@
-else
-    printf "executing case for existing server"
-    emacsclient -f "$selectedServer" -t $@
+}
+
+
+if [[ $NUM_SERVERS -eq 0 ]] ; then
+    spawnNewEmacsDaemon $@
+    else
+        while ! [[ $s -ge 0 && $s -le $NUM_SERVERS ]]
+        do
+            echo "Choose server to connect to:"
+            echo "0 - new server (*)"
+            i=0
+            for server in "${servers[@]}"
+            do
+                :
+                i=$((i+1))
+                echo "$i - $server"
+            done
+            read -n 1 -s s
+            re='^[0-9]+$'
+            if ! [[ $s =~ $re ]] ; then
+                #        echo "error: Not a number" >&2; #exit 1
+                if [[ $s -eq "" ]]; then
+                    s=0
+                else
+                    s=-1            
+                fi
+            fi
+            if [[ $s -eq 0 ]] ; then
+                selectedServer=$NEWSERVER
+            else
+                selectedServer=${servers[$((s-1))]}
+            fi
+        done
+        #printf "\n$s was entered corresponding to $selectedServer\n"
+
+        if [ ${selectedServer} = ${NEWSERVER} ] ; then
+            spawnNewEmacsDaemon
+        else
+            printf "executing case for existing server"
+            emacsclient -f "$selectedServer" -t $@
+        fi
+
 fi
 
