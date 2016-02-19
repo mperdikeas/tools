@@ -49,9 +49,8 @@ if [[ $NUM_SERVERS -eq 0 ]] ; then
         #printf "\n$s was entered corresponding to $selectedServer\n"
 
         if [ ${selectedServer} = ${NEWSERVER} ] ; then
-            spawnNewEmacsDaemon
+            spawnNewEmacsDaemon $@
         else
-            printf "executing case for existing server"
             emacsclient -f "$selectedServer" -t $@
         fi
 
