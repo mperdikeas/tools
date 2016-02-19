@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 readonly PASS_FILE=~/esac.neuropublic.pwd
-readonly DEST=172.31.148.22
+readonly DEST=172.17.12.55
 cd ~/esac-rawdar
 BROKEN="$(find -L -type l | wc -l)"
 if [ "$BROKEN" -gt 0 ]; then
