@@ -12,7 +12,7 @@ function spawnNewEmacsDaemon {
     printf "Enter name for new emacs daemon:"
     read newServerName
     emacs --daemon="$newServerName"
-    emacsclient -f "$newServerName" -t $@
+    emacsclient -f "$newServerName" -t "$@"
 }
 
 
@@ -51,7 +51,7 @@ if [[ $NUM_SERVERS -eq 0 ]] ; then
         if [ ${selectedServer} = ${NEWSERVER} ] ; then
             spawnNewEmacsDaemon $@
         else
-            emacsclient -f "$selectedServer" -t $@
+            emacsclient -f "$selectedServer" -t "$@"
         fi
 
 fi
