@@ -1,4 +1,17 @@
 #!/usr/bin/env bash
+ME=`basename $0`
+WHERE_I_LIVE=${BASH_SOURCE[0]/%${ME}/.}
+COUNTF=${WHERE_I_LIVE}/.emax/count
+
+if [ -f ${COUNTF} ];
+then
+    COUNT=$(<${COUNTF})
+else
+    touch -a ${COUNTF}
+    echo "0" > ${COUNTF}
+    COUNT=0
+fi
+
 servers=($(find ~/.emacs.d/server -type f -exec basename {} \;))
 s=-1
 NEWSERVER="newserver"
@@ -22,20 +35,29 @@ if [[ $NUM_SERVERS -eq 0 ]] ; then
         while ! [[ $s -ge 0 && $s -le $NUM_SERVERS ]]
         do
             echo "Choose server to connect to:"
-            echo "0 - new server (*)"
+                if [[ $COUNT -eq 0 ]];
+                then            
+                    echo "0 - new server (*)"
+                else
+                    echo "0 - new server"
+                fi
             i=0
             for server in "${servers[@]}"
             do
                 :
                 i=$((i+1))
-                echo "$i - $server"
+                if [[ $i -eq $COUNT ]];
+                then
+                   echo "$i - $server (*)"
+                else
+                    echo "$i - $server"
+                fi
             done
             read -n 1 -s s
             re='^[0-9]+$'
             if ! [[ $s =~ $re ]] ; then
-                #        echo "error: Not a number" >&2; #exit 1
                 if [[ $s -eq "" ]]; then
-                    s=0
+                    s=$COUNT
                 else
                     s=-1            
                 fi
@@ -43,6 +65,7 @@ if [[ $NUM_SERVERS -eq 0 ]] ; then
             if [[ $s -eq 0 ]] ; then
                 selectedServer=$NEWSERVER
             else
+                echo "$s" > ${COUNTF}
                 selectedServer=${servers[$((s-1))]}
             fi
         done
