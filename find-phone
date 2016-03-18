@@ -1,3 +1,4 @@
 #!/bin/bash
 grep -i $1 ~/mperdikeas.github.com/neuropublic-phones-all.csv
+grep -i $1 ~/mperdikeas.github.com/gaia-phones-all.csv
 grep -i $1 ~/mperdikeas.github.com/phonebook.html

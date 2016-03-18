@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+readonly MOUNT_DIR=/media/np-250.neuropublic.gr.Download
+readonly USER=m_perdikeas
+sudo mkdir -p $MOUNT_DIR
+files=(/$MOUNT_DIR/*)
+if [ ${#files[@]} -gt 1 ]; # http://stackoverflow.com/a/91558/274677
+then
+    echo "network directory is already mounted at ${MOUNT_DIR}. Doing nothing."
+else
+    echo "Provide the Kerio password associated with the user ${USER}"
+    sudo mount -t cifs -o username=$USER //172.16.12.250/Download $MOUNT_DIR
+fi
