@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+echo "radacer host password is:  r@d@c3r"
+sudo sshfs -o allow_other radacer@172.17.12.56:/data /media/local-radacer-repository
