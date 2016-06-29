@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+ME=`basename $0`
+WHERE_I_LIVE=${BASH_SOURCE[0]/%${ME}/.}
+if [[ ($# -gt 1) ]]
+then
+    echo "usage is $0 [(optional) file to open]"
+else
+    if [[ ($# -eq 0) ]]
+    then
+        java -jar ${WHERE_I_LIVE}/yed-3.15.0.2/yed.jar > /dev/null 2>&1 &
+    else
+        FILE_TO_OPEN=$1
+        java -jar ${WHERE_I_LIVE}/yed-3.15.0.2/yed.jar $FILE_TO_OPEN > /dev/null 2>&1 &
+    fi
+fi   
