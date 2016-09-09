@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# http://unix.stackexchange.com/q/308896/24044
+
+if [ $# -gt 1 ]
+then
+    echo "usage is $0 [top-of-directory-tree]"
+else
+    DIRECTORY=$1
+    find $DIRECTORY -type l -lname '/*'
+fi
+
