@@ -12,7 +12,15 @@ else
     COUNT=0
 fi
 
-servers=($(find ~/.emacs.d/server -type f -exec basename {} \;))
+USE_UNIX_SOCKETS=true # if set to "false" ensure you have "(setq server-use-tcp t)" in your .emacs
+
+if [ "${USE_UNIX_SOCKETS}" = true ] ; then
+    printf "using *UNIX* sockets\n"
+    servers=($(ss -lxp | grep LISTEN | grep -i emacs | awk '{ print $5 }' | rev | cut -d'/' -f 1 | rev))
+else
+    printf "using *TCP* sockets\n"    
+    servers=($(find ~/.emacs.d/server -type f -exec basename {} \;))
+fi    
 s=-1
 NEWSERVER="newserver"
 selectedServer=""
@@ -25,7 +33,11 @@ function spawnNewEmacsDaemon {
     printf "Enter name for new emacs daemon:"
     read newServerName
     emacs --daemon="$newServerName"
-    emacsclient -f "$newServerName" -t "$@"
+    if [ "${USE_UNIX_SOCKETS}" = true ] ; then
+        emacsclient -s "$newServerName" -t "$@"
+    else
+        emacsclient -f "$newServerName" -t "$@"
+    fi
 }
 
 
@@ -74,7 +86,11 @@ if [[ $NUM_SERVERS -eq 0 ]] ; then
         if [ ${selectedServer} = ${NEWSERVER} ] ; then
             spawnNewEmacsDaemon $@
         else
-            emacsclient -f "$selectedServer" -t "$@"
+            if [ "${USE_UNIX_SOCKETS}" = true ] ; then
+                emacsclient -s "$selectedServer" -t "$@"
+            else                
+                emacsclient -f "$selectedServer" -t "$@"
+            fi                
         fi
 
 fi
