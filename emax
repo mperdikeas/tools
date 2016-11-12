@@ -38,6 +38,7 @@ function spawnNewEmacsDaemon {
     else
         emacsclient -f "$newServerName" -t "$@"
     fi
+    echo $(($NUM_SERVERS+1)) > ${COUNTF}
 }
 
 
