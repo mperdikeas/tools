@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+if [[ ($# -ne 1) && ($# -ne 0) ]]
+then
+    echo "usage is $0 <optional number of history lines>"
+else
+    if [[ ($# -eq 0) ]]
+    then
+        git lgb
+    else
+        NUM_OF_LINES=$1
+        git lgb -"$NUM_OF_LINES"
+    fi
+fi
