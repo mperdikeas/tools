@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+if [[ ($# -ne 1) ]]
+then
+    echo "usage is $0 <file or directory to sent to the oblivion directory>"
+    exit 1;
+else
+    if [ -z ${CACHE_OF_OBLIVION+x} ]; then # http://stackoverflow.com/a/13864829/274677
+        printf "\n\n\n\n\n\t\tCACHE_OF_OBLIVION is unset, cowardly refusing to proceed\n\n\n";
+        exit 2;
+    fi
+    mkdir -p "${CACHE_OF_OBLIVION}"
+    THING_TO_MOVE_TO_OBLIVION=$1
+    THING_TO_MOVE_TO_OBLIVION_TIP=$(basename $THING_TO_MOVE_TO_OBLIVION)
+
+    readonly TIMESTAMP=$( date '+%Y-%m-%d_%0H%0M%0S' )
+    readonly DEST=$CACHE_OF_OBLIVION/$THING_TO_MOVE_TO_OBLIVION_TIP-$TIMESTAMP
+    if [ -e ${DEST} ]; then
+        printf "${DEST} strangely exists, cowardly refusing to proceed"
+        exit 3;
+    fi
+    mv $THING_TO_MOVE_TO_OBLIVION $DEST
+    printf "Moved $THING_TO_MOVE_TO_OBLIVION to $DEST\n"
+fi
