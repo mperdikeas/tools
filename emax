@@ -1,4 +1,11 @@
 #!/usr/bin/env bash
+
+# TODO:
+# * check that the answer provided by the user is one of the
+#   possible prompted answers
+# * maybe change from numeric to letters to allow for more than
+#   10 servers    
+
 ME=`basename $0`
 WHERE_I_LIVE=${BASH_SOURCE[0]/%${ME}/.}
 COUNTF=${WHERE_I_LIVE}/.emax/count
