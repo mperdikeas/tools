@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-if [[ ($# -ne 1) ]]
+if [[ ($# -ne 1) && ($# -ne 2) ]]
 then
-    echo "usage is $0 <file or directory to sent to the oblivion directory>"
+    echo "usage is $0 <file or directory to sent to the oblivion directory> (<optional suffix to use>) "
     exit 1;
 else
     if [ -z ${CACHE_OF_OBLIVION+x} ]; then # http://stackoverflow.com/a/13864829/274677
@@ -10,13 +10,25 @@ else
     fi
     mkdir -p "${CACHE_OF_OBLIVION}"
     THING_TO_MOVE_TO_OBLIVION=$1
-    THING_TO_MOVE_TO_OBLIVION_TIP=$(basename $THING_TO_MOVE_TO_OBLIVION)
+
+    if [ ! -f ${THING_TO_MOVE_TO_OBLIVION} ]; then
+        echo "File ${THING_TO_MOVE_TO_OBLIVION} not found!"
+        exit 3;
+    fi
+    
+    SUFFIX=$2
+    if [[ -z "${SUFFIX}" ]]
+    then
+       THING_TO_MOVE_TO_OBLIVION_TIP=$(basename $THING_TO_MOVE_TO_OBLIVION)
+    else
+       THING_TO_MOVE_TO_OBLIVION_TIP=$(basename $THING_TO_MOVE_TO_OBLIVION).${SUFFIX}
+    fi           
 
     readonly TIMESTAMP=$( date '+%Y-%m-%d_%0H%0M%0S' )
     readonly DEST=$CACHE_OF_OBLIVION/$THING_TO_MOVE_TO_OBLIVION_TIP-$TIMESTAMP
     if [ -e ${DEST} ]; then
         printf "${DEST} strangely exists, cowardly refusing to proceed"
-        exit 3;
+        exit 4;
     fi
     mv $THING_TO_MOVE_TO_OBLIVION $DEST
     printf "Moved $THING_TO_MOVE_TO_OBLIVION to $DEST\n"
