@@ -11,8 +11,8 @@ else
     mkdir -p "${CACHE_OF_OBLIVION}"
     THING_TO_MOVE_TO_OBLIVION=$1
 
-    if [ ! -f ${THING_TO_MOVE_TO_OBLIVION} ]; then
-        echo "File ${THING_TO_MOVE_TO_OBLIVION} not found!"
+    if [ ! -e ${THING_TO_MOVE_TO_OBLIVION} ]; then
+        echo "File or directory ${THING_TO_MOVE_TO_OBLIVION} not found!"
         exit 3;
     fi
     
