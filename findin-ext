@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+if [[ ($# -ne 2) && ($# -ne 3) ]]
+then
+    echo "usage is $0 <file extension> <grep pattern to look for in files of that extension> [<top-of-folder-hierarchy> or, if missing, current dir]"
+else
+    FILE_EXTENSION=$1
+    THING_TO_LOOKFOR=$2
+    FOLDER=${3:-.}
+
+    find -L "$FOLDER" -iname \*."$FILE_EXTENSION" -exec grep -i "$THING_TO_LOOKFOR" /dev/null {} \; | grep --color=always -i "$THING_TO_LOOKFOR"
+fi
+

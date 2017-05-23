@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-findin-ext java "$@"
+findin-ext jsp "$@"
 
 
