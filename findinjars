@@ -11,7 +11,7 @@ else
         echo "directory [$DIR] does not exist";
         exit 1;
     fi
-    find "$DIR" -name "*.jar" -exec sh -c 'jar -tf {}|grep -H --label {} '$REG_EXP'' \;
+    find "$DIR" -name "*.jar" -exec sh -c 'jar -tf {}|grep -i -H --label {} '$REG_EXP'' \;
 fi
 
 
