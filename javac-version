@@ -1,0 +1,119 @@
+#!/usr/bin/env bash
+
+function contains() {
+    local n=$#
+    local value=${!n}
+    for ((i=1;i < $#;i++)) {
+            if [ "${!i}" == "${value}" ]; then
+                echo "y"
+                return 0
+            fi
+        }
+        echo "n"
+        return 1
+}
+
+function friendlyName() {
+    local n=$1
+    case "$n" in
+        "46")
+            echo "Java 1.2"
+            ;;
+        "47")
+            echo "Java 1.3"
+            ;;
+        "48")
+            echo "Java 1.4"
+            ;;
+        "49")
+            echo "Java 5"
+            ;;
+        "50")
+            echo "Java 6"
+            ;;
+        "51")
+            echo "Java 7"
+            ;;
+        "52")
+            echo "Java 8"
+            ;;
+        "53")
+            echo "Java 9"
+            ;;
+        *)
+            echo "unrecognized version"
+    esac
+    }
+
+if [[ ($# -ne 1) && ($# -ne 2) ]]
+then
+    echo "usage is $0 [-v (optional verbose flag)] <path to .class or .jar file>"
+    exit 1;
+fi
+
+if [[ ($# -eq 2) ]] && [[ "$1" != "-v" ]]; then
+    echo "if two parameters are given, the first one must be '-v'"
+    exit 1;
+fi
+
+
+verbose='f';
+if [[ "$1" == "-v" ]]; then
+    verbose='t'
+    shift
+fi
+FILE="$1"
+if ! [[ -e "$FILE" ]]; then
+    echo "file $FILE doth not exist"
+    exit 1;
+fi
+
+if ! [[ -f "$FILE" ]]; then
+    echo "file $FILE is not a file"
+    exit 1;
+fi
+
+filename=$(basename "$FILE")
+ext="${filename##*.}"
+if ! ( [[ "$ext" == "class" ]] || [[ "$ext" == "jar" ]] ); then
+    echo "file $FILE has extension $ext and so is neither a class nor a jar file"
+    exit 1;
+fi
+if [[ "$ext" == "class" ]] ; then
+    version=$(javap -verbose "$FILE" | grep major\ version | stripcolorcodes | cut -d ' '  -f 5)
+    if [[ "$verbose" == "f" ]]; then
+        echo "$version"
+    else
+        friendlyNameV=$(friendlyName "$version")
+        printf "version is: %s (%s)\n" "$version" "$friendlyNameV"
+    fi
+else
+    versions=()
+    for class in $(jar -tf $FILE | grep '.class'); do
+        # Replace /'s with .'s
+        class=${class//\//.};
+        version=$(javap -verbose -classpath $FILE ${class//.class/} | grep major\ version | cut -d ' '  -f 5);
+        if  [ $(contains "${versions[@]}" "$version") == "y" ]; then
+            /bin/true;
+        else
+            if [[ "$verbose" == "t" ]]; then
+                friendlyNameV=$(friendlyName "$version")                
+                echo "version $version ($friendlyNameV) encountered"
+            fi
+            versions+=("$version")    
+        fi
+    done
+    if [[ "$verbose" == "t" ]]; then
+        echo "${#versions[@]} different versions found:";
+    fi
+    for (( i=0; i<${#versions[@]}; i++ ));
+    do
+        if [[ "$verbose" == "f" ]]; then
+            echo "${versions[$i]}"
+        else
+            friendlyNameV=$(friendlyName "${versions[$i]}")
+            echo "${versions[$i]} ($friendlyNameV)"
+        fi
+    done
+fi
+
