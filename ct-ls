@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+ls $(ct ls | awk 'BEGIN {FS="@@"} /Rule/ {print $1}')
