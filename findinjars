@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# new implementation: http://stackoverflow.com/a/1500307/274677
+# new implementation: https://stackoverflow.com/a/47437943/274677
 if [[ ($# -ne 1) && ($# -ne 2) ]]
 then
     echo "usage is $0 <grep RegEx to look for in contents of jar> [<top-of-folder-hierarchy> or, if missing, current dir]"
@@ -11,7 +11,13 @@ else
         echo "directory [$DIR] does not exist";
         exit 1;
     fi
-    find "$DIR" -name "*.jar" -exec sh -c 'jar -tf {}|grep -i -H --label {} '$REG_EXP'' \;
+    find "$DIR" -name "*.jar" -exec sh -c '
+    (test -e {})
+    exitStatus=$?
+    if [ "$exitStatus" -eq 0 ]; then # this is done to avoid broken symlinks
+        jar -tf {}|grep -i -H --label {} '$REG_EXP'
+    fi
+' \;
 fi
 
 
