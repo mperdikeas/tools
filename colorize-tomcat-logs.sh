@@ -36,8 +36,6 @@ severeCondition=*SEVERE*
 fine=$(tput bold;tput setaf $GREY)
 fineCondition=*FINE*
 
-default=$(tput sgr0)
-
 while read line; do
 
     if [[ $line == $successCondition ]]
@@ -62,6 +60,6 @@ while read line; do
         echo $line
     fi
 
-    printf $(tput sgr0)
+    printf $(tput sgr0) # sgr0: turn off all attributes (http://linuxcommand.org/lc3_adv_tput.php)
 
     done
