@@ -23,7 +23,7 @@ USE_UNIX_SOCKETS=true # if set to "false" ensure you have "(setq server-use-tcp 
 
 if [ "${USE_UNIX_SOCKETS}" = true ] ; then
     printf "using *UNIX* sockets\n"
-    servers=($(ss -lxp | grep LISTEN | grep -i emacs | awk '{ print $5 }' | rev | cut -d'/' -f 1 | rev))
+    servers=($(ss -lxp | grep LISTEN | grep -i /tmp/emacs | awk '{ print $5 }' | rev | cut -d'/' -f 1 | rev))
 else
     printf "using *TCP* sockets\n"    
     servers=($(find ~/.emacs.d/server -type f -exec basename {} \;))
