@@ -15,6 +15,8 @@ else
         mkdir -p "$OUTPUT/$dirname"
         # the below works but I got very poor compression results; gs was way better
         # convert -density 94x94 -quality 26 -compress jpeg "$file" "$OUTPUT/$dirname/$fname"
-        gs -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -sOutputFile="$OUTPUT/$dirname/$fname" "$file"
+
+        # https://askubuntu.com/a/256449/89663
+        gs -dNOPAUSE -dQUIET -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -sOutputFile="$OUTPUT/$dirname/$fname" "$file"
     done
 fi
