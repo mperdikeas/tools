@@ -17,6 +17,30 @@ else
         # convert -density 94x94 -quality 26 -compress jpeg "$file" "$OUTPUT/$dirname/$fname"
 
         # https://askubuntu.com/a/256449/89663
-        gs -dNOPAUSE -dQUIET -dBATCH -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/prepress -sOutputFile="$OUTPUT/$dirname/$fname" "$file"
+        # settings are:
+        #     /screen
+        #     /ebook
+        #     /printer
+        #     /prepress
+        gs -dNOPAUSE -dQUIET \
+           -dBATCH -sDEVICE=pdfwrite \
+           -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen \
+           -dDownsampleColorImages=true \
+           -dDownsampleGrayImages=true \
+           -dDownsampleMonoImages=true \
+           -dColorImageDownsampleThreshold=1 \
+           -dGrayImageDownsampleThreshold=1 \
+           -dMonoImageDownsampleThreshold=1 \
+           -dColorImageDownsampleType=/Bicubic \
+           -dGrayImageDownsampleType=/Bicubic \
+           -dMonoImageDownsampleType=/Bicubic \
+           -dColorImageResolution=75 \
+           -dGrayImageResolution=75 \
+           -sOutputFile="$OUTPUT/$dirname/$fname" "$file"
     done
 fi
+
+
+
+
+
