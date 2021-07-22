@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+pretty.py | pygmentize -l json
