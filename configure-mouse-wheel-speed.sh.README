@@ -1,0 +1,11 @@
+pre-requisite:
+        you need to install [imwheel]:
+            $  sudo apt install imwheel
+        
+provenance is:
+        http://www.nicknorton.net/mousewheel.sh (accessed 2022-09-26)
+
+solution is described here:
+        https://askubuntu.com/a/1361121/89663
+
+                
