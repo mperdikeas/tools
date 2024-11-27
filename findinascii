@@ -1,10 +1,21 @@
 #!/usr/bin/env bash
-if [[ ($# -ne 1) && ($# -ne 2) ]]
+
+function  highlight() { grep --color=always -e "^" -e $* ;} # https://superuser.com/a/1192944/138891
+
+if [[ ($# -ne 2) && ($# -ne 3) ]]
 then
-    echo "usage is $0 <grep pattern to look for in ASCII files> [<top-of-folder-hierarchy> or, if missing, current dir]"
+    echo "usage is $0 <grep pattern to look for in ASCII files> <maxdepth (infinity if 0) [<top-of-folder-hierarchy> or, if missing, current dir]"
 else
     THING_TO_LOOK_FOR=$1
-    FOLDER=${2:-.}
+    MAX_DEPTH=$2
+    if [[ MAX_DEPTH -eq 0 ]]
+    then
+        MAX_DEPTH=9999
+    fi
+    FOLDER=${3:-.}
 #    find -L "$FOLDER" -type f -exec grep -i "$THING_TO_LOOK_FOR" {} \; -exec file {} \; | grep text | cut -d ':' -f1
-    (for f in $(find -L "$FOLDER" -type f); do grep -i "$THING_TO_LOOK_FOR" $f /dev/null; done)  | stripcolorcodes  | grep -i "$THING_TO_LOOK_FOR"
+    (for f in $(find -L "$FOLDER" -maxdepth "$MAX_DEPTH" -type f); do grep -i "$THING_TO_LOOK_FOR" $f /dev/null; done)  | stripcolorcodes  | grep -i "$THING_TO_LOOK_FOR" | highlight "$THING_TO_LOOK_FOR"
 fi
+
+
+
