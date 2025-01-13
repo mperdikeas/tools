@@ -2,20 +2,59 @@
 
 function  highlight() { grep --color=always -e "^" -e $* ;} # https://superuser.com/a/1192944/138891
 
-if [[ ($# -ne 2) && ($# -ne 3) ]]
-then
-    echo "usage is $0 <grep pattern to look for in ASCII files> <maxdepth (infinity if 0) [<top-of-folder-hierarchy> or, if missing, current dir]"
-else
-    THING_TO_LOOK_FOR=$1
-    MAX_DEPTH=$2
-    if [[ MAX_DEPTH -eq 0 ]]
-    then
-        MAX_DEPTH=9999
-    fi
-    FOLDER=${3:-.}
-#    find -L "$FOLDER" -type f -exec grep -i "$THING_TO_LOOK_FOR" {} \; -exec file {} \; | grep text | cut -d ':' -f1
-    (for f in $(find -L "$FOLDER" -maxdepth "$MAX_DEPTH" -type f); do grep -i "$THING_TO_LOOK_FOR" $f /dev/null; done)  | stripcolorcodes  | grep -i "$THING_TO_LOOK_FOR" | highlight "$THING_TO_LOOK_FOR"
+# Default value for maxdepth
+maxdepth=9999
+
+# Parse optional -maxdepth flag
+while [[ "$#" -gt 0 ]]; do
+  case $1 in
+    -maxdepth)
+      shift
+      if [[ "$1" =~ ^[0-9]+$ ]]; then
+        maxdepth=$1
+        shift
+      else
+        echo "Error: -maxdepth requires a numeric argument."
+        exit 1
+      fi
+      ;;
+    *)
+      break
+      ;;
+  esac
+done
+
+# Check if more than two positional arguments are supplied
+if [[ "$#" -gt 2 ]]; then
+  echo "Error: Too many arguments. Only one or two positional arguments are allowed."
+  echo "Usage: $0 [-maxdepth <number>] <arg1> [<directory>]"
+  exit 1
 fi
+
+# Read the first positional argument (required)
+if [[ -z "$1" ]]; then
+  echo "Usage: $0 [-maxdepth <number>] <arg1> [<directory>]"
+  exit 1
+fi
+THING_TO_LOOK_FOR=$1
+shift
+
+# Read the second positional argument (optional)
+if [[ -n "$1" ]]; then
+  dir=$1
+  # Check if the supplied argument is a valid directory
+  if [[ ! -d "$dir" ]]; then
+    echo "Error: '$dir' is not a valid directory."
+    exit 1
+  fi
+else
+  # Default to the current directory if not provided
+  dir="."
+fi
+
+
+(for f in $(find -L "$dir" -maxdepth "$maxdepth" -type f); do grep -i "$THING_TO_LOOK_FOR" $f /dev/null; done)  | stripcolorcodes  | grep -i "$THING_TO_LOOK_FOR" | highlight "$THING_TO_LOOK_FOR"
+
 
 
 
