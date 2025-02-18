@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-function  highlight() { grep --color=always -e "^" -e $* ;} # https://superuser.com/a/1192944/138891
-
 # Default value for maxdepth
 maxdepth=9999
 
@@ -36,7 +34,8 @@ if [[ -z "$1" ]]; then
   echo "Usage: $0 [-maxdepth <number>] <arg1> [<directory>]"
   exit 1
 fi
-THING_TO_LOOK_FOR=$1
+THING_TO_LOOK_FOR="$1"
+echo "THING_TO_LOOK_FOR is read as [$THING_TO_LOOK_FOR]"
 shift
 
 # Read the second positional argument (optional)
@@ -53,8 +52,8 @@ else
 fi
 
 
-(for f in $(find -L "$dir" -maxdepth "$maxdepth" -type f); do grep -i "$THING_TO_LOOK_FOR" $f /dev/null; done)  | stripcolorcodes  | grep -i "$THING_TO_LOOK_FOR" | highlight "$THING_TO_LOOK_FOR"
-
+# https://chat.deepseek.com/a/chat/s/2125873f-671e-4f32-bfe2-d9392e40cc4c
+find -L "$dir" -maxdepth "$maxdepth" -type f -exec grep --color=always -i "$THING_TO_LOOK_FOR" /dev/null {} +
 
 
 
