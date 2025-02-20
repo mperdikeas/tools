@@ -35,7 +35,7 @@ if [[ -z "$1" ]]; then
   exit 1
 fi
 THING_TO_LOOK_FOR="$1"
-echo "THING_TO_LOOK_FOR is read as [$THING_TO_LOOK_FOR]"
+
 shift
 
 # Read the second positional argument (optional)
